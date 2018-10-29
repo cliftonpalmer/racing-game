@@ -222,11 +222,24 @@ function update(scene, object, delta)
     audio_source_set_gain(rsource, vol)
 end
 
+reset_time = os.time()
 function on_event(scene, object, name, value)
     if name == "x_axis" or name == "z_axis" or name =="y_axis" then
         gameobject_set_number(object, name, value)
     elseif name == "x_look" or name == "y_look" then
         gameobject_set_number(object, name, value)
+    elseif name == "reset" and os.time() > reset_time then
+        print("Resetting!")
+        physics_set_velocity(object, 0, 0, 0)
+        physics_set_angular_velocity(object, 0, 0, 0)
+
+        cur_x, cur_y, cur_z = physics_get_rotation(object)
+        physics_set_rotation(object, cur_x, 0, 0)
+
+        cur_x, cur_y, cur_z = physics_get_position(object)
+        physics_set_position(object, cur_x, cur_y + 10.0, cur_z)
+
+        reset_time = os.time()
     end
 end
 

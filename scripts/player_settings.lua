@@ -13,3 +13,4 @@ keybinds['JA_0'] = {x_axis = 1.0}
 keybinds['JA_3'] = {x_look = 0.01}
 keybinds['JA_4'] = {y_look = 0.01}
 
+keybinds['R'] = { reset = 1 }
